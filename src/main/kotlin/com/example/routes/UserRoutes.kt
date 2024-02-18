@@ -5,6 +5,8 @@ import com.auth0.jwt.algorithms.Algorithm
 import com.example.AuthenticationConfig
 import com.example.models.ItemResponse
 import com.example.models.LoginRequest
+import com.example.models.User
+import com.example.models.users
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -25,15 +27,15 @@ fun Route.userRoutes() {
         }
 
         get("/items") {
-            val response = ItemResponse(items = listOf("one", "two", "three"))
+            val response = ItemResponse(items = listOf("one", "two", "tree"))
             call.respond(response)
         }
     }
 
     post("/login") {
         val loginRequest = call.receive<LoginRequest>()
-
-        if (loginRequest.username == "johan" && loginRequest.password == "pass") {
+        val user = User(loginRequest.username, loginRequest.password)
+        if (users.contains(user)) {
             val token = generateToken(loginRequest)
 
             call.respond(hashMapOf("token" to token))
