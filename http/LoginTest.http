@@ -1,7 +1,17 @@
+GET http://0.0.0.0:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImlzcyI6Imh0dHA6Ly8wLjAuMC4wOjgwODAvIiwidXNlcm5hbWUiOiJqb2hhbiIsImV4cCI6MTcwODIwMjEwMH0.eLnhVIJpa5XauXAjOL6BxtbhAwb7ddj9flEy-TX6RtU
+Accept: application/json
+
+###
+GET http://0.0.0.0:8080/items
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImlzcyI6Imh0dHA6Ly8wLjAuMC4wOjgwODAvIiwidXNlcm5hbWUiOiJqb2hhbiIsImV4cCI6MTcwODIwMjEwMH0.eLnhVIJpa5XauXAjOL6BxtbhAwb7ddj9flEy-TX6RtU
+Accept: application/json
+
+###
 POST http://0.0.0.0:8080/login
 Content-Type: application/json
 
 {
-  "username": "Johan",
+  "username": "johan",
   "password": "pass"
 }
