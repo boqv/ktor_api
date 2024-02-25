@@ -4,8 +4,22 @@ Accept: application/json
 
 ###
 GET http://0.0.0.0:8080/items
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImlzcyI6Imh0dHA6Ly8wLjAuMC4wOjgwODAvIiwidXNlcm5hbWUiOiJqb2hhbiIsImV4cCI6MTcwODIwMjEwMH0.eLnhVIJpa5XauXAjOL6BxtbhAwb7ddj9flEy-TX6RtU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImlzcyI6Imh0dHA6Ly8wLjAuMC4wOjgwODAvIiwidXNlcm5hbWUiOiJqb2hhbiIsImV4cCI6MTcwODcwMTMxOH0.b1c27b9_WggBD3UzLoqwvixyNpdq-UeR8Es4XGiF8xo
 Accept: application/json
+
+###
+GET http://0.0.0.0:8080/articles
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImlzcyI6Imh0dHA6Ly8wLjAuMC4wOjgwODAvIiwidXNlcm5hbWUiOiJqb2hhbiIsImV4cCI6MTcwODcwNjY3OX0.Kci5BDTmXnjC6ZVr8XKOgZHOy79vZS4_uHKATnbgA8U
+Accept: application/json
+
+###
+POST http://0.0.0.0:8080/articles
+Content-Type: application/json
+
+{
+  "title": "third",
+  "body": "this was created seconds ago"
+}
 
 ###
 POST http://0.0.0.0:8080/login

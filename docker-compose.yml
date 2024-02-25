@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=ktorapi
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+    ports:
+      - "5432:5432"

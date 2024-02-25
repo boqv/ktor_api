@@ -3,10 +3,8 @@ package com.example.routes
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import com.example.AuthenticationConfig
-import com.example.models.ItemResponse
-import com.example.models.LoginRequest
-import com.example.models.User
-import com.example.models.users
+import com.example.data.dao.dao
+import com.example.models.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -17,7 +15,7 @@ import io.ktor.server.routing.*
 import java.util.*
 
 fun Route.userRoutes() {
-    authenticate("auth-jwt") {
+    //authenticate("auth-jwt") {
         get("/") {
             val principal = call.principal<JWTPrincipal>()
             val username = principal?.payload?.getClaim("username")?.asString()
@@ -27,10 +25,35 @@ fun Route.userRoutes() {
         }
 
         get("/items") {
-            val response = ItemResponse(items = listOf("one", "two", "tree"))
+            val response = ItemResponse(items = listOf("one", "two", "GO!"))
             call.respond(response)
         }
-    }
+
+        get("/articles") {
+            try {
+                val articles = dao.allArticles()
+                call.respond(
+                    mapOf("articles" to articles)
+                )
+            } catch (exception: Exception) {
+                println(exception)
+            }
+        }
+
+        post("/articles") {
+            try {
+                val request = call.receive<PostArticleRequest>()
+
+                val id = dao.addNewArticle(request.title, request.body)
+
+                val article = dao.article(id)
+
+                call.respond(hashMapOf("article" to article))
+            } catch (exception: Exception) {
+                println(exception)
+            }
+        }
+    //}
 
     post("/login") {
         val loginRequest = call.receive<LoginRequest>()
@@ -50,6 +73,6 @@ private fun generateToken(loginRequest: LoginRequest): String {
         .withAudience(AuthenticationConfig.AUDIENCE)
         .withIssuer(AuthenticationConfig.ISSUER)
         .withClaim("username", loginRequest.username)
-        .withExpiresAt(Date(System.currentTimeMillis() + 60000))
+        .withExpiresAt(Date(System.currentTimeMillis() + 60000 * 60))
         .sign(Algorithm.HMAC256(AuthenticationConfig.SECRET))
 }

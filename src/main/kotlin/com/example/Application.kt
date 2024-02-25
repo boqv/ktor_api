@@ -1,5 +1,6 @@
 package com.example
 
+import com.example.data.DatabaseSingleton
 import com.example.plugins.configureAuthentication
 import com.example.plugins.configureRouting
 import com.example.plugins.configureSerialization
@@ -13,6 +14,7 @@ fun main() {
 }
 
 fun Application.module() {
+    DatabaseSingleton.init()
     configureAuthentication()
     configureSerialization()
     configureRouting()
